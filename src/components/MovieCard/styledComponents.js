@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Card = styled.article`
+  cursor:pointer;
   position: relative;
   background-color: ${({ theme }) => theme.c2};
   border-radius: 10px;
@@ -11,6 +12,7 @@ export const Card = styled.article`
   max-width: 400px;
   min-width: 300px;
   min-height: 350px;
+  overflow:hidden;
   &:hover div {
     opacity: 0;
   }
@@ -37,6 +39,7 @@ export const Card = styled.article`
       background: ${({ theme }) => theme.lightC2};
       & p {
         color: ${({ theme }) => theme.lightC1};
+        background:none;
         font-weight: 700;
         height: 30%;
         width: 100%;
@@ -64,4 +67,15 @@ export const Info = styled.div`
   width: 100%;
   height: 100%;
   transition: opacity 0.2s;
+  display:flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: flex-start;
+  & p{
+    width:100%;
+    text-align:center;
+    display:block;
+    background:${({ theme })=> theme.c2};
+  }
+  &
 `;
