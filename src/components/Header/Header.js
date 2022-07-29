@@ -2,13 +2,12 @@ import { Head, Logo, Svg, UserImage } from "./styledComponents";
 
 import { Link } from "react-router-dom";
 import ThemeToggler from "../ThemeToggler/ThemeToggler";
-import userImage from "../../images/userImage.svg";
 
-function Header({ setDarkMode }) {
+function Header({ setDarkMode , darkMode}) {
   return (
     <Head>
       <Logo>
-        <Link to="/">Movie App</Link>
+        <Link to="/">Entertainment App</Link>
       </Logo>
       <UserImage>
         <Svg
@@ -25,7 +24,7 @@ function Header({ setDarkMode }) {
           />
         </Svg>
       </UserImage>
-      <ThemeToggler setDarkMode={setDarkMode} />
+      <ThemeToggler setDarkMode={setDarkMode} darkMode={darkMode}/>
     </Head>
   );
 }

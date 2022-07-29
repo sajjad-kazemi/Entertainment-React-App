@@ -12,7 +12,7 @@ export const MoviesContainer = styled.section`
   flex-shrink:2;
   flex-grow:0;
   padding:10px 20px;
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 480px) {
     padding:10px 5px;
   }
 `;
@@ -49,25 +49,24 @@ const Skeleton = styled.div`
   background-color: ${({ theme }) => theme.lightColor};
   border-radius: 10px;
   width: 300px;
-  height: 400px;
+  height: 451px;
   margin:15px;
   background-image: linear-gradient(0.25turn, transparent, #fff, transparent),
     linear-gradient(#eee, #eee),
     linear-gradient(#eee, #eee);
   background-repeat: no-repeat;
-  background-size: 100% 100%, 100% 50%, 90% 30px;
+  background-size: 100% 100%, 100% 90%, 90% 30px;
   background-position: -300px 0, 0 0, 50% 60%;
   animation: loading 1.5s infinite;
-  @media only screen and (max-width: 376px) {
-    width:250px;
+  @media only screen and (max-width: 480px) {
+    width:300px;
     height:150px;
     background-image:
     linear-gradient(0.25turn, transparent, #fff, transparent),
     linear-gradient(#eee, #eee);
-    background-size:60% 100%, 40% 100%;
+    background-size:65% 100%, 35% 100%;
     background-position:-250px 0, 100% 0%;
     animation:smallLoading 1.5s infinite;
-    /* animation:none; */
   }
   @keyframes loading {
     to {

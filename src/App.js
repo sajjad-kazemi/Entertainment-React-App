@@ -16,18 +16,18 @@ import React from "react";
 import { ThemeProvider } from "styled-components";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
-  const [theme, setTheme] = useState(lightTheme);
+  const [darkMode, setDarkMode] = useState(true);
+  const [theme, setTheme] = useState(darkTheme);
   useEffect(() => {
     darkMode ? setTheme(darkTheme) : setTheme(lightTheme);
-  }, [darkMode]);
+  }, [darkMode,theme]);
   return (
     <>
       <ThemeProvider theme={theme}>
         <AppStyle />
         <Router>
           <div className="container">
-            <Header setDarkMode={setDarkMode} />
+            <Header setDarkMode={setDarkMode} darkMode={darkMode} />
             <Routes>
               <Route>
                 <Route path="/" exact element={<Home />} />

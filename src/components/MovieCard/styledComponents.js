@@ -14,17 +14,25 @@ export const Card = styled.article`
   min-height: 350px;
   overflow:hidden;
   &:hover div {
-    opacity: 0;
+    color:transparent;
+    & p{
+      background:none;
+    }
   }
+  & p:first-child{
+        order:1;
+      }
 
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 480px) {
     min-height: 150px;
-    min-width: 250px;
+    max-width: 250px;
+    background-color:${({ theme }) => theme.lightC2};
     background-repeat: no-repeat;
     background-image: url(${(props) => props.bgImage});
     background-size: contain;
     background-position: right;
     display: flex;
+    flex-shrink: 1;
     margin:15px 5px;
     & div {
       position: static;
@@ -33,12 +41,12 @@ export const Card = styled.article`
       justify-content: left;
       align-items: center;
       align-content: space-around;
-      width: 60%;
+      width: 65%;
       height: 100%;
-      padding-left: 4px;
       background: ${({ theme }) => theme.lightC2};
       & p {
         color: ${({ theme }) => theme.lightC1};
+        word-break:break-all;
         background:none;
         font-weight: 700;
         height: 30%;
@@ -46,13 +54,16 @@ export const Card = styled.article`
         text-align: center;
         font-size: clamp(5px, 10px, 20px);
       }
+      & p:last-child{
+        order:2;
+      }
+      & p:first-child{
+        order:1;
+      }
     }
     & img {
       display: none;
     }
-    &:hover div {
-    opacity: 1;
-  }
   }
 `;
 
@@ -76,6 +87,7 @@ export const Info = styled.div`
     text-align:center;
     display:block;
     background:${({ theme })=> theme.c2};
+    padding-top:5px;
+    padding-bottom: 5px;
   }
-  &
 `;
