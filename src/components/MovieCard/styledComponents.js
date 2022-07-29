@@ -13,12 +13,16 @@ export const Card = styled.article`
   min-width: 300px;
   min-height: 350px;
   overflow:hidden;
-  &:hover div {
-    color:transparent;
-    & p{
-      background:none;
+  transition:transform .2s linear;
+  &:hover{
+    transform:scale(103%);
+    div {
+      color:transparent;
+      & p{
+        background:none;
+      }
     }
-  }
+  } 
   & p:first-child{
         order:1;
       }
