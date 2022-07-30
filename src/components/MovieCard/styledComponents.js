@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Card = styled.article`
+export const Card = styled.a`
   cursor:pointer;
   position: relative;
   background-color: ${({ theme }) => theme.c2};
@@ -42,7 +42,7 @@ export const Card = styled.article`
       position: static;
       display: flex;
       flex-direction: column;
-      justify-content: left;
+      justify-content: space-around;
       align-items: center;
       align-content: space-around;
       width: 65%;

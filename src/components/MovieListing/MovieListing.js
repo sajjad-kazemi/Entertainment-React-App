@@ -22,8 +22,11 @@ function MovieListing() {
       <LoadingSkeleton />
     );
   renderShows =
-    Shows.Response === "True" &&
-    Shows.Search.map((show, index) => <MovieCard movie={show} key={index} />);
+    (Shows.Response === "True" &&
+    Shows.Search.map((show, index) => <MovieCard movie={show} key={index} />)) ||
+    (Movies.Response === "False" && <MoviesError>Error!</MoviesError>) || (
+      <LoadingSkeleton />
+    );
   return (
     <>
       <h2 style={{'textAlign':'center'}}>Movies</h2>
