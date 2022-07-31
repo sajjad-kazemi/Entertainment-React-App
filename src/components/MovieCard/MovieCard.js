@@ -1,6 +1,6 @@
 import { Card, Info, Poster } from "./styledComponents";
 
-function MovieCard({ movie }) {
+function MovieCard({ movie , width}) {
   if (!movie) {
     return (
       <Card>
@@ -9,11 +9,10 @@ function MovieCard({ movie }) {
     );
   }
   return (
-    <Card target="_blank" href={`/movie/${movie.imdbID}`} bgImage={movie.Poster}>
+    <Card width={width} target="_blank" href={`/movie/${movie.imdbID}`} bgImage={movie.Poster}>
         <Info>
           <p>{movie.Title}</p>
           <p>{movie.Year}</p>
-          {/* <Link style={{display:'none'}} target="_blank" ref={link} to={'movie/hello'}></Link> */}
         </Info>
         <Poster src={movie.Poster} alt="" />
     </Card>

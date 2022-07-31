@@ -33,7 +33,7 @@ export const UserImage = styled.div`
     width: 40px;
     height: 40px;
     @media (max-width: 480px) {
-      margin-right:30px;
+      margin-right:10px;
     }
   }
 `;

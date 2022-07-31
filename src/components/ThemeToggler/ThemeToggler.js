@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react";
-
 import darkIcon from "../../images/moon.svg";
 import lightIcon from "../../images/sun.svg";
 import styled from "styled-components";
 
 const Slider = styled.span`
   width: 26px;
-  height: 100%;
+  height: 103%;
   position: absolute;
   border: none;
   margin: 0;

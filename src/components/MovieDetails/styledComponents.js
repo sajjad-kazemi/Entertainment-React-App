@@ -67,7 +67,8 @@ export const MiniInfo = styled.div`
   display: flex;
   flex-direction:column;
   @media only screen and (max-width:1024px){
-    margin-left:15px;
+    overflow:hidden;
+    word-wrap:break-word;
   }
 `
 
@@ -87,7 +88,13 @@ export const MiniInfoDetail = styled.div`
   }
   @media only screen and (max-width:1024px){
     margin-left:15px;
+    word-break: keep-all;
   }
+  & p{
+      &:last-child{
+      margin-left:10px;
+    }
+    }
 `
 
 export const Poster = styled.img`

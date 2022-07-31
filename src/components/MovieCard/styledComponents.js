@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const Card = styled.a`
-  cursor:pointer;
   position: relative;
+  cursor:pointer;
   background-color: ${({ theme }) => theme.c2};
   border-radius: 10px;
-  width: auto;
+  width: ${(props)=>props.width};
   height: auto;
   margin: 15px;
   color: ${({ theme }) => theme.darkC1};
@@ -72,7 +72,7 @@ export const Card = styled.a`
 `;
 
 export const Poster = styled.img`
-  width: 100%;
+  width: auto;
   height: 100%;
   border-radius: 10px;
 `;

@@ -7,9 +7,9 @@ import { useEffect } from 'react';
 import { useParams } from "react-router-dom"
 
 function MovieDetails() {
-  const rateTitles = ['IMDB Rating⭐','IMDB Votes👍','Runtime🎬','Year📅'] 
-  const {imdbID} = useParams()
-  const dispatch = useDispatch()
+  const rateTitles = ['IMDB Rating⭐','IMDB Votes👍','Runtime🎬','Year📅'];
+  const {imdbID} = useParams();
+  const dispatch = useDispatch();
   const data = useSelector(getAllDetails)
   useEffect(() => {
     dispatch(fetchAsyncDetails(imdbID))
@@ -19,15 +19,17 @@ function MovieDetails() {
   }, [dispatch,imdbID]);
   console.log(data);
   if(Object.keys(data).length === 0){
-    return <h1>Loading...</h1>
+    return <h1 style={{textAlign:"center",color:'gray',height:'300px'}}>Loading...</h1>
+  }else {
+    document.title = data.Title
   }
   return (
     <Details>
       <Info>
         <Title>{data.Title}</Title>
         <Ratings>
-        <p>{rateTitles[0]+': '+((data.Ratings)[0]).Value }</p>
-        <p>{rateTitles[1]+': '+((data.Ratings)[1]).Value }</p>
+        <p>{data.Ratings.length>=1 && data.Ratings[0].Source ==='Internet Movie Database' && rateTitles[0]+': '+((data.Ratings)[0]).Value }</p>
+        <p>{data.Ratings.length>=2 && data.Ratings[1].Source ==='Rotten Tomatoes' && rateTitles[1]+': '+((data.Ratings)[1]).Value }</p>
         <p>{rateTitles[2]+': '+data.Runtime}min</p>
         <p>{rateTitles[3]+': '+data.Year }</p>
         </Ratings>
