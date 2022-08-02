@@ -1,48 +1,52 @@
 import {
-  NextPage,
-  PrevPage,
-  fetchAsyncNextPage,
-  fetchAsyncPrevPage,
+  Button,
+  LoadingSkeleton,
+  MoviesContainer,
+  MoviesError,
+} from "./styledComponents";
+import {
   fetchAsyncSearchResults,
   getAllSearchResults,
 } from "../../features/movies/MoviesSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-import MovieListing from '../MovieListing/MovieListing'
+import MovieCard from "../MovieCard/MovieCard";
+import ReactPaginate from "react-paginate";
 import { useParams } from "react-router";
 
 function SearchResult() {
   const [page, setPage] = useState(1);
   const { s } = useParams();
   const dispatch = useDispatch();
+  const PageClick = (state) => {
+    setPage(state.selected+1)
+  }
   useEffect(() => {
     dispatch(fetchAsyncSearchResults({ search: s, page }));
-    dispatch(fetchAsyncNextPage(page !== 1 && page));
-    dispatch(fetchAsyncPrevPage(page > 1 && page));
   }, [dispatch, s, page]);
+
   const result = useSelector(getAllSearchResults);
-  const nextPage = useSelector(NextPage);
-  const prevPage = useSelector(PrevPage);
-  console.log(result);
-  if (Object.keys(result).length === 0 || result.Response === "False") {
-    return <h1 style={{ textAlign: "center" }}>Loading...</h1>;
-  }
+  const render =
+    (result.Response === "True" &&
+      result.Search.map((movie, index) => {
+        return <MovieCard key={index} width="auto" movie={movie} />;
+      })) ||
+    (Object.keys(result).length === 0 && <LoadingSkeleton />) ||
+    (result.Response === "False" && <MoviesError>Error!</MoviesError>);
+    console.log(result);
   return (
     <>
-      {result.Search.map((item, index) => {
-        return (
-          <div key={index}>
-            <h5>{item.Title}</h5>
-          </div>
-        );
-      })}
-      {prevPage && page > 1 && (
-        <button onClick={() => setPage((state) => state - 1)}>prev</button>
-      )}
-      {nextPage && (
-        <button onClick={() => setPage((state) => state + 1)}>next</button>
-      )}
+      <MoviesContainer>{render}</MoviesContainer>
+      {/* <Pagination></Pagination> */}
+      <ReactPaginate
+      pageCount={Math.ceil((+result.totalResults)/10)}
+      previousLabel={<Button>{'< '}previous</Button>}
+      nextLabel={<Button>next{' >'}</Button>}
+      marginPagesDisplayed={4}
+      onPageChange={PageClick}
+
+      />
     </>
   );
 }

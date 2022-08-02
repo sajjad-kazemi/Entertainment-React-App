@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const MoviesContainer = styled.section`
   width:100%;
@@ -93,8 +93,6 @@ const SkeletonContainer = () => {
       <Skeleton/>
       <Skeleton/>
       <Skeleton/>
-      <Skeleton/>
-      <Skeleton/>
     </>
   );
 };
@@ -102,3 +100,8 @@ const SkeletonContainer = () => {
 export const LoadingSkeleton = () => {
   return <SkeletonContainer></SkeletonContainer>;
 };
+
+export const Button = styled.button`
+  border-radius:5px;
+  padding:5px;
+`

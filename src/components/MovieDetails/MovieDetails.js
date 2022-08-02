@@ -17,7 +17,6 @@ function MovieDetails() {
       dispatch(removeSelected())
     }
   }, [dispatch,imdbID]);
-  console.log(data);
   if(Object.keys(data).length === 0){
     return <h1 style={{textAlign:"center",color:'gray',height:'300px'}}>Loading...</h1>
   }else {

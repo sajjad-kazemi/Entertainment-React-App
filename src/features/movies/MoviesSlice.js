@@ -37,38 +37,39 @@ export const fetchAsyncSearchResults = createAsyncThunk(
     const resp = await MovieApi.get(
       `?apiKey=${apiKey}&s=${search}&page=${page}`
     );
-    console.log(resp.data);
     return resp.data;
   }
 );
-export const fetchAsyncNextPage = createAsyncThunk(
-  "movies/fetchAsyncNextPage",
-  async (data) => {
-    const { search, page } = data;
-    const resp = await MovieApi.get(
-      `?apiKey=${apiKey}&s=${search}&page=${page + 1}`
-    );
-    return resp.data;
-  }
-);
-export const fetchAsyncPrevPage = createAsyncThunk(
-  "movies/fetchAsyncPrevPage",
-  async (data) => {
-    const { search, page } = data;
-    const resp = await MovieApi.get(
-      `?apiKey=${apiKey}&s=${search}&page=${page - 1}`
-    );
-    return resp.data;
-  }
-);
+// export const fetchAsyncNextPage = createAsyncThunk(
+//   "movies/fetchAsyncNextPage",
+//   async (data) => {
+//     const { search, page } = data;
+//     const resp = await MovieApi.get(
+//       `?apiKey=${apiKey}&s=${search}&page=${page + 1}`
+//     );
+//     return resp.data;
+//   }
+// );
+// export const fetchAsyncPrevPage = createAsyncThunk(
+//   "movies/fetchAsyncPrevPage",
+//   async (data) => {
+//     const { search, page } = data;
+//     const resp = await MovieApi.get(
+//       `?apiKey=${apiKey}&s=${search}&page=${page - 1}`
+//     );
+//     return resp.data;
+//   }
+// );
 
 const initialState = {
   movies: {},
   shows: {},
   details: {},
-  search: {},
-  nextPage: false,
-  prevPage: false,
+  search: {
+    Response:"False",
+    Search:[],
+    totalResults:0,
+  },
 };
 
 const MovieSlice = createSlice({
@@ -81,8 +82,6 @@ const MovieSlice = createSlice({
   },
   extraReducers: {
     [fetchAsyncMovies.fulfilled]: (state, { payload }) => {
-      console.log("state", state);
-      console.log("payload", payload);
       return { ...state, movies: payload };
     },
     [fetchAsyncMovies.rejected]: (err) => {
@@ -100,12 +99,9 @@ const MovieSlice = createSlice({
     [fetchAsyncSearchResults.fulfilled]: (state, { payload }) => {
       return { ...state, search: payload };
     },
-    [fetchAsyncNextPage.fulfilled]: (state, { payload }) => {
-      return { ...state, nextPage: payload.Response };
-    },
-    [fetchAsyncPrevPage.fulfilled]: (state, { payload }) => {
-      return { ...state, prevPage: payload.Response };
-    },
+    [fetchAsyncSearchResults.rejected]: (err)=>{
+      console.log("Error!\n",err);
+    }
   },
 });
 export const { removeSelected } = MovieSlice.actions;
@@ -113,6 +109,4 @@ export const getAllMovies = (state) => state.movies.movies;
 export const getAllShows = (state) => state.movies.shows;
 export const getAllDetails = (state) => state.movies.details;
 export const getAllSearchResults = (state) => state.movies.search;
-export const NextPage = (state) => state.movies.nextPage;
-export const PrevPage = (state) => state.movies.prevPage;
 export default MovieSlice.reducer;
