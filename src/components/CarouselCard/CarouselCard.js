@@ -1,16 +1,16 @@
-import {Card, Poster, Title} from './styledComponents'
+import { Card, Poster, Title } from "./styledComponents";
 
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
-function CarouselCard({movie}) {
+function CarouselCard({ content }) {
   return (
     <Card>
-        <Poster src={movie.Poster} alt="" />
-      <Link to={`movie/${movie.imdbID}`}>
-        <Title>{movie.Title}</Title>
+      <Link to={`movie/${content.imdbID}`}>
+        <Poster src={content.Poster} alt="" />
+        <Title>{content.Title}</Title>
       </Link>
     </Card>
-  )
+  );
 }
 
-export default CarouselCard
+export default CarouselCard;

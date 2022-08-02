@@ -6,15 +6,21 @@ export const Card = styled.article`
   height:400px;
   margin:0;
   overflow: hidden;
-  & a{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  margin:0 auto;
+  & p{
     opacity:0;
     transition: opacity .2s linear;
   }
-  &:hover a{
-    opacity:1;
+  &:hover {
+    & p{
+      opacity:1;
+    }
   }
-  @media only screen and (max-width:1024px){
-    & a{
+  @media only screen and (hover:none){
+    & p{
       opacity:1;
     }
   }

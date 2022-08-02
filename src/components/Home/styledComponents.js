@@ -20,3 +20,9 @@ export const StyledHome = styled.div`
     }
   }
 `;
+
+export const  Title = styled.h2`
+  text-align:center;
+  margin:15px 7px;
+  user-select: none;
+`

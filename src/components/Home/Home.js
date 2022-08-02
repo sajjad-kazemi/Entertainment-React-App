@@ -1,8 +1,9 @@
-import {Banner, StyledHome} from './styledComponents'
+import {Banner, StyledHome, Title} from './styledComponents'
 import {fetchAsyncMovies, fetchAsyncShows} from '../../features/movies/MoviesSlice'
+import { getAllMovies, getAllShows } from "../../features/movies/MoviesSlice";
+import { useDispatch, useSelector } from 'react-redux'
 
-import MovieListing from '../MovieListing/MovieListing'
-import { useDispatch } from 'react-redux'
+import MoviesCarousel from '../MoviesCarousel/MoviesCarousel'
 import {useEffect} from 'react'
 
 function Home() {
@@ -11,10 +12,15 @@ function Home() {
     dispatch(fetchAsyncShows())
     dispatch(fetchAsyncMovies())
   },[dispatch])
+  const  movies = useSelector(getAllMovies)
+  const  shows = useSelector(getAllShows)
   return (
     <StyledHome>
-      <Banner></Banner>
-      <MovieListing/>
+      {/* <Banner></Banner> */}
+      <Title>Movies</Title>
+      <MoviesCarousel content={movies}/>
+      <Title>Shows</Title>
+      <MoviesCarousel content={shows}/>
     </StyledHome>
   )
 }

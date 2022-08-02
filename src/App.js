@@ -13,6 +13,7 @@ import Home from "./components/Home/Home";
 import MovieDetails from "./components/MovieDetails/MovieDetails";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 import React from "react";
+import SearchResult from './components/SearchResult/SearchResult'
 import { ThemeProvider } from "styled-components";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
             <Header setDarkMode={setDarkMode} darkMode={darkMode} />
             <Routes>
               <Route>
+                <Route path='/search/:s' element={<SearchResult/>}></Route>
                 <Route path="/" exact element={<Home />} />
                 <Route path="/movie/:imdbID" element={<MovieDetails />} />
                 <Route path="*" element={<PageNotFound />} />
