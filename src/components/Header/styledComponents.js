@@ -1,3 +1,4 @@
+import image from "../../images/film.svg";
 import styled from "styled-components";
 
 export const Head = styled.header`
@@ -9,34 +10,43 @@ export const Head = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position:sticky;
-  top:0;
-  z-index:99;
+  position: sticky;
+  top: 0;
+  z-index: 99;
 `;
 
 export const Logo = styled.div`
+  position: absolute;
+  right: 50%;
+  transform: translateX(50%);
+  word-wrap: normal;
   & a {
-    color: ${({ theme }) => theme.c1};
+    min-width: 20vw;
+    display: flex;
+    justify-content: center;
     text-decoration: none;
+  }
+  & a p {
+    margin-left: 10px;
+    color: ${({ theme }) => theme.c1};
     font-weight: 900;
   }
-`;
-
-export const UserImage = styled.div`
-  color: ${({ theme }) => theme.c1};
-  & svg {
-    position: absolute;
-    transform: translateY(-50%);
-    transform-origin: center;
-    margin: 2px ${({ theme }) => theme.globalSize * 2}px;
-    right: 0;
-    width: 40px;
-    height: 40px;
-    @media (max-width: 480px) {
-      margin-right:10px;
+  @media only screen and (max-width: 480px) {
+    & a {
+      width: min-content;
+    }
+    & a p {
+      display: none;
     }
   }
 `;
+
 export const Svg = styled.svg`
-  color:${({ theme })=>theme.lightColor}
-` 
+  display: none;
+  color: ${({ theme }) => theme.lightC1};
+  @media only screen and (max-width: 480px) {
+    display: initial;
+    width: 10vw;
+    height: auto;
+  }
+`;

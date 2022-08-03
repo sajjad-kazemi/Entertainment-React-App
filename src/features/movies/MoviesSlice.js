@@ -6,7 +6,7 @@ import { apiKey } from "../../common/api/movieApiKey";
 export const fetchAsyncMovies = createAsyncThunk(
   "movies/fetchAsyncMovies",
   async () => {
-    const movieText = "love";
+    const movieText = "family";
     const resp = await MovieApi.get(
       `?apiKey=${apiKey}&s=${movieText}&type=movie`
     );
@@ -40,33 +40,12 @@ export const fetchAsyncSearchResults = createAsyncThunk(
     return resp.data;
   }
 );
-// export const fetchAsyncNextPage = createAsyncThunk(
-//   "movies/fetchAsyncNextPage",
-//   async (data) => {
-//     const { search, page } = data;
-//     const resp = await MovieApi.get(
-//       `?apiKey=${apiKey}&s=${search}&page=${page + 1}`
-//     );
-//     return resp.data;
-//   }
-// );
-// export const fetchAsyncPrevPage = createAsyncThunk(
-//   "movies/fetchAsyncPrevPage",
-//   async (data) => {
-//     const { search, page } = data;
-//     const resp = await MovieApi.get(
-//       `?apiKey=${apiKey}&s=${search}&page=${page - 1}`
-//     );
-//     return resp.data;
-//   }
-// );
 
 const initialState = {
   movies: {},
   shows: {},
   details: {},
   search: {
-    Response:"False",
     Search:[],
     totalResults:0,
   },

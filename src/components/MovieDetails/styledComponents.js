@@ -31,8 +31,9 @@ export const Title = styled.h1`
 
 export const Ratings = styled.div`
   width:100%;
-  display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
+  display: flex;
   align-items: flex-start;
   color:${({ theme }) => theme.c2};
   & p{
@@ -45,6 +46,9 @@ export const Ratings = styled.div`
   }
   @media only screen and (max-width:1024px){
     justify-content: space-around;
+    & p{
+      margin: 10px auto;
+    }
   }
 `
 
@@ -65,6 +69,7 @@ export const Plot = styled.p`
 export const MiniInfo = styled.div`
   width:100%;
   display: flex;
+  flex-wrap: wrap;
   flex-direction:column;
   @media only screen and (max-width:1024px){
     overflow:hidden;

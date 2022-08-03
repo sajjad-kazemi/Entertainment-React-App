@@ -8,10 +8,10 @@ export const AppStyle = createGlobalStyle`
   }
   ::-webkit-scrollbar{
     width:10px;
-    background-color:${({ theme })=>theme.c3};
+    background-color:${({ theme })=>theme.darkC3};
   }
   ::-webkit-scrollbar-thumb{
-    background-color:${({ theme })=>theme.lightC2};
+    background-color:${({ theme })=>theme.darkC2};
     border-radius:100vh;
   }
   ::-webkit-scrollbar-thumb:active{

@@ -30,7 +30,7 @@ const Label = styled.label`
   height: 50%;
   background-color: ${({ theme }) => theme.c1};
   transform: translateX(-50%);
-  margin: 0 20px;
+  margin: 0 20px ;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -40,9 +40,16 @@ const Label = styled.label`
   & * {
     user-select: none;
   }
+  @media only screen and (max-width: 376px) {
+    margin:0 0 0 auto;
+  }
 `;
 
 const ThemeToggler = ({ setDarkMode, darkMode }) => {
+  const changeTheme = () => {
+    localStorage.setItem('dark',!darkMode);
+    setDarkMode((state) => !state);
+  }
   return (
     <Label htmlFor="themeToggle">
       <ModeIcon className="light" src={lightIcon} alt="light" />
@@ -51,7 +58,7 @@ const ThemeToggler = ({ setDarkMode, darkMode }) => {
         checked={darkMode}
         id="themeToggle"
         type="checkbox"
-        onChange={() => setDarkMode((state) => !state)}
+        onChange={changeTheme}
       />
       <Slider />
     </Label>

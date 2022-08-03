@@ -17,11 +17,15 @@ import SearchResult from './components/SearchResult/SearchResult'
 import { ThemeProvider } from "styled-components";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(true);
-  const [theme, setTheme] = useState(darkTheme);
+  const getDark = (JSON.parse(localStorage.getItem("dark")) === null && false)  || JSON.parse(localStorage.getItem('dark'));
+  const [darkMode, setDarkMode] = useState(getDark);
+  const [theme, setTheme] = useState((darkMode && darkTheme)|| lightTheme);
   useEffect(() => {
     darkMode ? setTheme(darkTheme) : setTheme(lightTheme);
   }, [darkMode,theme]);
+  if( JSON.parse(JSON.parse(localStorage.getItem("dark"))=== null)){
+    localStorage.setItem('dark',darkMode)
+  }
   return (
     <>
       <ThemeProvider theme={theme}>

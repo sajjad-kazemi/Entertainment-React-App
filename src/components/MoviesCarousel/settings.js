@@ -1,3 +1,5 @@
+import Arrow from "./Arrows";
+
 const settings = {
   infinite: true,
   speed: 500,
@@ -6,8 +8,9 @@ const settings = {
   slidesToShow: 5,
   slidesToScroll: 5,
   swipeToSlide: true,
-  lazyLoad: true,
   dots: false,
+  nextArrow: <Arrow/> ,
+  prevArrow: <Arrow/>,
   responsive: [
     {
       breakpoint: 1580,

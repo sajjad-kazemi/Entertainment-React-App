@@ -3,6 +3,7 @@ import {
   LoadingSkeleton,
   MoviesContainer,
   MoviesError,
+  Pagination
 } from "./styledComponents";
 import {
   fetchAsyncSearchResults,
@@ -18,8 +19,10 @@ import { useParams } from "react-router";
 function SearchResult() {
   const [page, setPage] = useState(1);
   const { s } = useParams();
+  document.title = 'Search for '+s;
   const dispatch = useDispatch();
   const PageClick = (state) => {
+    window.scrollTo(0,0);
     setPage(state.selected+1)
   }
   useEffect(() => {
@@ -32,21 +35,21 @@ function SearchResult() {
       result.Search.map((movie, index) => {
         return <MovieCard key={index} width="auto" movie={movie} />;
       })) ||
-    (Object.keys(result).length === 0 && <LoadingSkeleton />) ||
+    (Object.keys(result).length === 2 && <LoadingSkeleton />) ||
     (result.Response === "False" && <MoviesError>Error!</MoviesError>);
-    console.log(result);
+    const totalPages = Math.ceil((+result.totalResults)/10);
   return (
     <>
       <MoviesContainer>{render}</MoviesContainer>
-      {/* <Pagination></Pagination> */}
-      <ReactPaginate
-      pageCount={Math.ceil((+result.totalResults)/10)}
-      previousLabel={<Button>{'< '}previous</Button>}
-      nextLabel={<Button>next{' >'}</Button>}
-      marginPagesDisplayed={4}
-      onPageChange={PageClick}
-
-      />
+      <Pagination>
+        <ReactPaginate
+        pageCount={totalPages}
+        previousLabel={<Button>{'< '}previous</Button>}
+        nextLabel={<Button>next{' >'}</Button>}
+        marginPagesDisplayed={4}
+        onPageChange={PageClick}
+        />
+      </Pagination>
     </>
   );
 }
