@@ -25,3 +25,5 @@ node_modules
 
 # Api secret key
 src/common/api/movieApiKey.js
+# Local Netlify folder
+.netlify
