@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
-export const Card = styled.a`
+export const Card = styled.article`
+  user-select: none;
   position: relative;
   cursor: pointer;
   background-color: ${({ theme }) => theme.c2};

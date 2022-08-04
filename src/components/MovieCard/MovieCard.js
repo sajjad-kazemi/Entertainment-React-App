@@ -1,8 +1,10 @@
 import { Card, Info, Poster } from "./styledComponents";
 
 import ImageNotFound from "../../images/ImageNotFound.png";
+import {useNavigate} from 'react-router-dom'
 
 function MovieCard({ movie, width }) {
+  const  navigate = useNavigate();
   if (!movie) {
     return (
       <Card>
@@ -13,11 +15,10 @@ function MovieCard({ movie, width }) {
   return (
     <Card
       width={width}
-      target="_blank"
-      href={`/movie/${movie.imdbID}`}
       bgImage={movie.Poster}
       notFoundImage={ImageNotFound}
       notFound={movie.Poster==="N/A"}
+      onClick={()=>navigate(`/movie/${movie.imdbID}`)}
     >
       <Info>
         <p>{movie.Title}</p>

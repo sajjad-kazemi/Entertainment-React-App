@@ -19,7 +19,7 @@ const Slider = styled.span`
 const ModeIcon = styled.img``;
 
 const Toggle = styled.input`
-  display: none;
+  display:none;
   &:checked + span {
     transform: rotateY(180deg);
   }

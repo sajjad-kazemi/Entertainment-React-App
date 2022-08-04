@@ -10,7 +10,6 @@ export const Input = styled.input`
   width:15vw;
   border:none;
   height:30px;
-  font-size:5px;
   z-index:2;
   &{
     & + button{
