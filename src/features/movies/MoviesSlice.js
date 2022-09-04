@@ -58,6 +58,9 @@ const MovieSlice = createSlice({
     removeSelected: (state) => {
       state.details = {};
     },
+    clearSearchResult:(state)=>{
+      state.search = {Search:[],totalResults:0}
+    }
   },
   extraReducers: {
     [fetchAsyncMovies.fulfilled]: (state, { payload }) => {
@@ -83,7 +86,7 @@ const MovieSlice = createSlice({
     }
   },
 });
-export const { removeSelected } = MovieSlice.actions;
+export const { removeSelected, clearSearchResult } = MovieSlice.actions;
 export const getAllMovies = (state) => state.movies.movies;
 export const getAllShows = (state) => state.movies.shows;
 export const getAllDetails = (state) => state.movies.details;

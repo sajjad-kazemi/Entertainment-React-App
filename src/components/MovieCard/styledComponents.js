@@ -72,6 +72,7 @@ export const Poster = styled.img`
   height: ${(props) => (props.notFound && "auto") || "100%"};
   border-radius: 10px;
   max-width: 300px;
+  object-fit:contain;
 `;
 
 export const Info = styled.div`

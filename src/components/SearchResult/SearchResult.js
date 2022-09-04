@@ -8,6 +8,7 @@ import {
 import {
   fetchAsyncSearchResults,
   getAllSearchResults,
+  clearSearchResult
 } from "../../features/movies/MoviesSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -23,9 +24,10 @@ function SearchResult() {
   const dispatch = useDispatch();
   const PageClick = (state) => {
     window.scrollTo(0,0);
-    setPage(state.selected+1)
+    setPage(state.selected+1);
   }
   useEffect(() => {
+    dispatch(clearSearchResult())
     dispatch(fetchAsyncSearchResults({ search: s, page }));
   }, [dispatch, s, page]);
 
