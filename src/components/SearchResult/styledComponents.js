@@ -133,7 +133,7 @@ export const Pagination = styled.div`
       }
       &.disabled {
         & button{
-          background-color: ${({ theme }) => theme.darkC3};
+          background-color: ${({ theme }) => theme.c3};
           color: ${({ theme }) => theme.darkC2};
           cursor: default;
         }
