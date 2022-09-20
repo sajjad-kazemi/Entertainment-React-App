@@ -46,8 +46,9 @@ const initialState = {
   shows: {},
   details: {},
   search: {
-    Search:[],
+    Search:{search:[]},
     totalResults:0,
+    isLoading:true
   },
 };
 
@@ -79,16 +80,20 @@ const MovieSlice = createSlice({
       return { ...state, details: payload };
     },
     [fetchAsyncSearchResults.fulfilled]: (state, { payload }) => {
-      return { ...state, search: payload };
+      return { ...state, search: {...payload,isLoading:false}};
     },
-    [fetchAsyncSearchResults.rejected]: (err)=>{
+    [fetchAsyncSearchResults.pending]:(state)=>{
+      return {...state, search:{isLoading:true}}
+    },
+    [fetchAsyncSearchResults.rejected]: (state,err)=>{
       console.log("Error!\n",err);
+      return {...state, search:{isLoading:false}}
     }
   },
 });
 export const { removeSelected, clearSearchResult } = MovieSlice.actions;
-export const getAllMovies = (state) => state.movies.movies;
-export const getAllShows = (state) => state.movies.shows;
-export const getAllDetails = (state) => state.movies.details;
-export const getAllSearchResults = (state) => state.movies.search;
+export const getAllMovies = (store) => store.movies.movies;
+export const getAllShows = (store) => store.movies.shows;
+export const getAllDetails = (store) => store.movies.details;
+export const getAllSearchResults = (store) => store.movies.search;
 export default MovieSlice.reducer;

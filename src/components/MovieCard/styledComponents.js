@@ -1,10 +1,9 @@
-import styled from "styled-components";
-
+import styled, { keyframes } from "styled-components";
 export const Card = styled.article`
   user-select: none;
   position: relative;
   cursor: pointer;
-  background-color: ${({ theme }) => theme.c2};
+  background-color: none;
   border-radius: 10px;
   width: ${(props) => props.width};
   height: auto;
@@ -14,11 +13,12 @@ export const Card = styled.article`
   min-width: 300px;
   min-height: 350px;
   overflow: hidden;
-  transition: transform 0.2s linear;
+  transition: all 0.2s linear;
   &:hover {
     transform: scale(103%);
-    div {
+    & * {
       color: transparent;
+      border-color:transparent;
       & * {
         background: none;
       }
@@ -79,7 +79,7 @@ export const Info = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  transition: opacity 0.2s;
+  transition: all 0.2s linear;
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
@@ -96,6 +96,7 @@ export const Info = styled.div`
     position: absolute;
     transform: translate(-10px, 10px);
     border-radius: 10px;
+    border:1px solid black;
     padding: 2px 4px;
     top: 0;
     right: 0;

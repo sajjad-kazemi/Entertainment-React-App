@@ -11,15 +11,13 @@ export const Input = styled.input`
   border:none;
   height:30px;
   z-index:2;
-  &{
-    & + button{
-      transform: translateX(-100%);
-      opacity:0;
-    }
-    &:focus + button , & + button:focus{
-      transform:translateX(0);
-      opacity:1;
-    }
+  padding-left:5px;
+  border-radius:100vh;
+  border:none;
+  outline:none;
+  &:focus + button , & + button:focus{
+    opacity:1;
+    z-index:10;
   }
 `
 
@@ -27,8 +25,18 @@ export const Submit = styled.button`
   height:30px;
   padding:0 5px;
   overflow: hidden;
+  border-radius:0 100vh 100vh 0;
   z-index: 1;
-  transition: transform .1s ease-out;
+  transform: translateX(-100%);
+  transition: opacity .1s cubic-bezier(1,0,.5,1);
+  opacity:0;
   background-color: ${({ theme }) => theme.lightColor};
-  border-color: ${({ theme }) => theme.c1}
+  border-color: ${({ theme }) => theme.lightC2};
+  border-style: solid;
+  border-width: 2px;
+  cursor:pointer;
+  border-left:none;
+  &:hover{
+    filter:brightness(120%)
+  }
 `

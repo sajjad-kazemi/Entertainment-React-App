@@ -1,12 +1,11 @@
 import CarouselCard from "../CarouselCard/CarouselCard";
-import { Loading } from "./styledComponents";
-import { Movies } from "./styledComponents";
+import { Loading,Movies } from "./styledComponents";
 import Slider from "react-slick";
 import settings from "./settings";
 
 function MoviesCarousel({ content }) {
   if (Object.keys(content).length === 0) {
-    return <Loading>Loading...</Loading>;
+    return <Loading></Loading>;
   }
   return (
     <>

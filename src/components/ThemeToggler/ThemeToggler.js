@@ -5,6 +5,7 @@ import styled from "styled-components";
 const Slider = styled.span`
   width: 26px;
   height: 103%;
+  border-radius:0 100vh 100vh 0;
   position: absolute;
   border: none;
   margin: 0;
@@ -26,6 +27,7 @@ const Toggle = styled.input`
 `;
 const Label = styled.label`
   position: relative;
+  border-radius:100vh;
   width: 50px;
   height: 50%;
   background-color: ${({ theme }) => theme.c1};
@@ -33,7 +35,7 @@ const Label = styled.label`
   margin: 0 20px ;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   padding: 0;
   cursor: pointer;
   &,

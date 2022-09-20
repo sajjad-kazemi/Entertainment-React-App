@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { keyframes } from "styled-components";
 export const Details = styled.section`
   width:100%;
   padding:10px;
@@ -112,3 +112,39 @@ export const Poster = styled.img`
     margin:10px auto;
   }
 `
+
+const rotate = keyframes`
+  to{
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+  }
+`
+
+const LoadingElement = styled.div`
+  &:before{
+    content: "";
+    display: block;
+    height: 50px;
+    width: 50px;
+    animation: spin 0.5s infinite linear;
+    -webkit-animation: ${rotate} 0.5s infinite linear;
+    border: 6px purple solid;
+    border-left-color: white;
+    border-radius: 100%;
+  }
+`
+const LoadingContainer = styled.div`
+  width:100%;
+  height:100%;
+  min-height:50vh;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+`
+
+export const Loading = ()=>{
+  return (<LoadingContainer><LoadingElement/></LoadingContainer>)
+}

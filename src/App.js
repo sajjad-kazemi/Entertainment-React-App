@@ -15,6 +15,8 @@ import PageNotFound from "./components/PageNotFound/PageNotFound";
 import React from "react";
 import SearchResult from './components/SearchResult/SearchResult'
 import { ThemeProvider } from "styled-components";
+import {Container} from  './AppStyledComponents'
+
 
 function App() {
   const getDark = (JSON.parse(localStorage.getItem("dark")) === null && false)  || JSON.parse(localStorage.getItem('dark'));
@@ -31,18 +33,18 @@ function App() {
       <ThemeProvider theme={theme}>
         <AppStyle />
         <Router>
-          <div className="container">
+          <Container>
             <Header setDarkMode={setDarkMode} darkMode={darkMode} />
             <Routes>
               <Route>
-                <Route path='/search/:s' element={<SearchResult/>}></Route>
+                <Route path='/search/:s/:page' element={<SearchResult/>}></Route>
                 <Route path="/" exact element={<Home />} />
                 <Route path="/movie/:imdbID" element={<MovieDetails />} />
                 <Route path="*" element={<PageNotFound />} />
               </Route>
             </Routes>
             <Footer></Footer>
-          </div>
+          </Container>
         </Router>
       </ThemeProvider>
     </>

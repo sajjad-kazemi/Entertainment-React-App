@@ -100,7 +100,7 @@ export const LoadingSkeleton = () => {
 };
 
 export const Button = styled.button`
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 5px;
 `;
 export const Pagination = styled.div`
@@ -136,6 +136,7 @@ export const Pagination = styled.div`
           background-color: ${({ theme }) => theme.c3};
           color: ${({ theme }) => theme.darkC2};
           cursor: default;
+          filter:brightness(70%)
         }
       }
       &.selected{

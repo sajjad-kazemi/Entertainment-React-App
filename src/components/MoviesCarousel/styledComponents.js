@@ -10,6 +10,7 @@ export const  Movies = styled.section`
 export const Loading = styled.h1`
   text-align:center;
   animation: loading 1s infinite;
+  height:30vh;
   @keyframes loading {
     0%{
       opacity: 0;

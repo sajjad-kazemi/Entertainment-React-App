@@ -8,28 +8,35 @@ import {
 import {
   fetchAsyncSearchResults,
   getAllSearchResults,
-  clearSearchResult
+  clearSearchResult,
 } from "../../features/movies/MoviesSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import MovieCard from "../MovieCard/MovieCard";
 import ReactPaginate from "react-paginate";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 
 function SearchResult() {
-  const [page, setPage] = useState(1);
-  const { s } = useParams();
-  document.title = 'Search for '+s;
+  const navigate = useNavigate()
+  const { s, page } = useParams();
   const dispatch = useDispatch();
+
   const PageClick = (state) => {
     window.scrollTo(0,0);
-    setPage(state.selected+1);
+    navigate('/search/'+s+'/'+(state.selected+1))
   }
+  useEffect(() => {
+  document.title = 'Search for '+s;
+  }, [s]);
   useEffect(() => {
     dispatch(clearSearchResult())
     dispatch(fetchAsyncSearchResults({ search: s, page }));
   }, [dispatch, s, page]);
+
+  useEffect(() => {
+    window.scrollTo(0,0);
+  }, [s]);
 
   const result = useSelector(getAllSearchResults);
   const render =
@@ -37,8 +44,7 @@ function SearchResult() {
       result.Search.map((movie, index) => {
         return <MovieCard key={index} width="auto" movie={movie} />;
       })) ||
-    (Object.keys(result).length === 2 && <LoadingSkeleton />) ||
-    (result.Response === "False" && <MoviesError>Error!</MoviesError>);
+    (result.isLoading && <LoadingSkeleton />) || (!result.search && <MoviesError>Error!<h6>{result.Error}</h6></MoviesError>) ;
     const totalPages = Math.ceil((+result.totalResults)/10);
   return (
     <>
@@ -50,6 +56,7 @@ function SearchResult() {
         nextLabel={<Button>next{' >'}</Button>}
         marginPagesDisplayed={4}
         onPageChange={PageClick}
+        initialPage={page-1}
         />
       </Pagination>
     </>

@@ -1,4 +1,4 @@
-import {Details, Info, MiniInfo, MiniInfoDetail, Plot, Poster, Ratings, Title} from './styledComponents'
+import {Details, Info, MiniInfo, MiniInfoDetail, Plot, Poster, Ratings, Title,Loading} from './styledComponents'
 import {fetchAsyncDetails, removeSelected} from '../../features/movies/MoviesSlice'
 import {useDispatch, useSelector} from  'react-redux'
 
@@ -19,7 +19,7 @@ function MovieDetails() {
     }
   }, [dispatch,imdbID]);
   if(Object.keys(data).length === 0){
-    return <h1 style={{textAlign:"center",color:'gray',height:'300px'}}>Loading...</h1>
+    return <Loading></Loading>
   }else {
     document.title = data.Title;
   }
